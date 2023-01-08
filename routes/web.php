@@ -1,6 +1,6 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +15,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('blog', function () {
+    //consults a bd
+    $posts = [
+        ['id' => 1, 'title' => 'PHP', 'slug' => 'php'],
+        ['id' => 1, 'title' => 'Laravel', 'slug' => 'laravel'],
+    ];
+
+    return view('blog', ['posts' => $posts]);
+});
+
+Route::get('blog/{slug}', function ($slug) {
+    //consult a bd por ej para un element
+    $post = $slug;
+    return view('post', ['post' => $post]);
+});
+
+Route::get('search', function (Request $request){
+    return $request->all();
 });
