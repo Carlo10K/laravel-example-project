@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,26 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+/*
+Route::get('/',[PageController::class, 'home'] )->name('home');
+Route::get('blog', [PageController::class, 'blog'])->name('blog');
+Route::get('blog/{slug}', [PageController::class, 'post'])->name('post');
+Route::get('search', [PageController::class,'search'])->name('search');
+*/
 
-Route::get('blog', function () {
-    //consults a bd
-    $posts = [
-        ['id' => 1, 'title' => 'PHP', 'slug' => 'php'],
-        ['id' => 1, 'title' => 'Laravel', 'slug' => 'laravel'],
-    ];
+Route::controller(PageController::class)->group(function () {
+    Route::get('/', 'home')->name('home');
 
-    return view('blog', ['posts' => $posts]);
-})->name('blog');
+    Route::get('blog', 'blog')->name('blog');
 
-Route::get('blog/{slug}', function ($slug) {
-    //consult a bd por ej para un element
-    $post = $slug;
-    return view('post', ['post' => $post]);
-})->name('post');
+    Route::get('blog/{slug}', 'post')->name('post');
 
-Route::get('search', function (Request $request) {
-    return $request->all();
+    Route::get('search', 'search')->name('search');
 });
