@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
 Route::get('blog', function () {
     //consults a bd
@@ -25,14 +25,14 @@ Route::get('blog', function () {
     ];
 
     return view('blog', ['posts' => $posts]);
-});
+})->name('blog');
 
 Route::get('blog/{slug}', function ($slug) {
     //consult a bd por ej para un element
     $post = $slug;
     return view('post', ['post' => $post]);
-});
+})->name('post');
 
-Route::get('search', function (Request $request){
+Route::get('search', function (Request $request) {
     return $request->all();
 });
