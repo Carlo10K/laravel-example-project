@@ -72,9 +72,9 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
-        $request -> validate([
+        $request->validate([
             'title' => 'required',
-            'slug' => ['required',Rule::unique('posts','slug')->ignore($post->id)],
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
             'body' => 'required',
         ]);
 
