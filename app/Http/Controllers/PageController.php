@@ -14,7 +14,9 @@ class PageController extends Controller
 
         //$posts = Post::latest('id')->paginate();
 
-        $posts = Post::where('title', 'LIKE', "%{$search}%")->latest()->paginate();
+        $posts = Post::where('title', 'LIKE', "%{$search}%")
+        ->with('user')
+        ->latest()->paginate();
         return view('home', ['posts' => $posts]);
     }
 

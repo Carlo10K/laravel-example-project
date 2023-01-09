@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=p, initial-scale=1.0">
     <title>Proyecto Web</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite('resources/css/app.css', 'resources/js/app.js')
 
 </head>
 
