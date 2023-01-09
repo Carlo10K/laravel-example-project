@@ -68,6 +68,13 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        $post->update([
+            'title' => $title = $request->title,
+            'slug' => Str::slug($title),
+            'body' => $request->body,
+        ]);
+
+        return redirect()->route('posts.index');
     }
 
     /**
